@@ -36,11 +36,11 @@ Vec_dataNo285=mean(dataNo285);  %附件三平均值
 data_354_2=data_354;    %原始数据
 data_354(313,:)=Vec_dataNo313;
 data_354(285,:)=Vec_dataNo285;
-data_354_3=data_354;    %附件三处理后数据
+data_354_3=data_354;    %附件三处理加入后数据
 
 %对附件一处理
-data_354=Q1_step2(data_354,range);  %按变量范围置0
-data_354=Q1_step1(data_354,1);      %列中有一个0则整列置0
+data_354=Q1_step2(data_354,range);
+data_354=Q1_step1(data_354,range);
 
 
 
