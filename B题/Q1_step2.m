@@ -1,4 +1,4 @@
-% 354个操作变量的取值范围与delta误差
+% 354个操作变量的取值范围并将范围外的置零
 function[data]=Q1_step2(data,fanwei) 
     b=zeros(length(fanwei),2);
     for i=1:size(fanwei)

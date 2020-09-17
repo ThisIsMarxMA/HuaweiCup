@@ -25,12 +25,12 @@ file3='C:\2020ÄêÖĞ¹úÑĞ¾¿ÉúÊıÑ§½¨Ä£¾ºÈüÈüÌâ\2020ÄêBÌâ\2020ÄêBÌâ--ÆûÓÍĞÁÍéÖµ½¨Ä£\Ê
 [~,range]=xlsread(file3,'D2:D355');
 
 %Ö÷º¯Êı²¿·Ö
-dataNo313=Q1_step3(dataNo313);
-dataNo313=Q1_step1(dataNo313,0.7);
+dataNo313=Q1_step3(dataNo313);  %°´3sigma·¨Ôò£¬Òì³£ÖµÖÃÁã
+dataNo313=Q1_step1(dataNo313,0.7);  %°´40*0.7Ö´ĞĞµÚÒ»µã
 Vec_dataNo313=mean(dataNo313);  %¸½¼şÈıÆ½¾ùÖµ
 
-dataNo285=Q1_step3(dataNo285);
-dataNo285=Q1_step1(dataNo285,0.7);
+dataNo285=Q1_step3(dataNo285);  %°´3sigma·¨Ôò£¬Òì³£ÖµÖÃÁã
+dataNo285=Q1_step1(dataNo285,0.7);  %°´40*0.7Ö´ĞĞµÚÒ»µã
 Vec_dataNo285=mean(dataNo285);  %¸½¼şÈıÆ½¾ùÖµ
 
 data_354_2=data_354;    %Ô­Ê¼Êı¾İ

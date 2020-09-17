@@ -6,16 +6,17 @@ function[data]=Q1_step3(data)
         flag=1;
         while(flag==1)  %循环
             flag=0;
-            No0_vec=nonzeros(vec);   %取出非零元素
-            aa=mean(No0_vec); %非零元素均值
-            sig=sqrt((1/(length(No0_vec)-1))*sum((No0_vec-aa).^2)); %标准差
+            aa=sum(vec,2)./sum(~~vec,2); %非零元素均值
+            sig=((1/(length(vec)-1))*sum((vec-aa).^2); %标准差 不能用std()
+            m=zeros(1,length(vec));
             for t=1:length(vec) %遍历这列数据
-                if (vec(t)~=0) && (abs(vec(t)-aa)>=3*sig)
+                m(t)=abs(vec(t)-aa);
+                if m(t)>=3*sig;
                     vec(t)=0;  %超过的置0
                     flag=1;
                 end
             end
         end
-        data(:,i)=vec;  %将筛选后的数据赋值回去
+        data(:,i)=vec;
     end
 end
