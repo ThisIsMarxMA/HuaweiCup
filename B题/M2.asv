@@ -1,19 +1,84 @@
-file='D:\学校与学习相关文件\同济大学\研究生数学建模\2020年中国研究生数学建模竞赛赛题\2020年中国研究生数学建模竞赛赛题\2020年B题\2020年B题--汽油辛烷值建模\数模题\附件一：325个样本数据.xlsx';
-file2='D:\学校与学习相关文件\同济大学\研究生数学建模\2020年中国研究生数学建模竞赛赛题\2020年中国研究生数学建模竞赛赛题\2020年B题\2020年B题--汽油辛烷值建模\数模题\附件三：285号和313号样本原始数据.xlsx';
-[data_354]=xlsread(file,'Q4:NF328');
-[raw_7]=xlsread(file,'C4:I328');
-[Daishen_2]=xlsread(file,'M4:N328');
-[Zaishen_2]=xlsread(file,'O4:P328');
-[product_2]=xlsread(file,'J4:K328');
-[RON_Loss]=xlsread(file,'L4:L328');
-%No285，
+file='C:\2020年中国研究生数学建模竞赛赛题\2020年B题\2020年B题--汽油辛烷值建模\数模题\附件一：325个样本数据.xlsx';
+file2='C:\2020年中国研究生数学建模竞赛赛题\2020年B题\2020年B题--汽油辛烷值建模\数模题\附件三：285号和313号样本原始数据.xlsx';
+file3='C:\2020年中国研究生数学建模竞赛赛题\2020年B题\2020年B题--汽油辛烷值建模\数模题\附件四：354个操作变量信息.xlsx';
+% [data_354]=xlsread(file,'Q4:NF328');
+% [raw_7]=xlsread(file,'C4:I328');
+% [Daishen_2]=xlsread(file,'M4:N328');
+% [Zaishen_2]=xlsread(file,'O4:P328');
+% [product_2]=xlsread(file,'J4:K328');
+% [RON_Loss]=xlsread(file,'L4:L328');
+
+%No285，No313号样本
 [dataNo285]=xlsread(file2,'操作变量','B4:MQ43');
 [dataNo313]=xlsread(file2,'操作变量','B45:MQ84');
-[rawNo285]=xlsread(file2,'原料','D2:J2');
-[rawNo313]=xlsread(file2,'原料','D3:J3');
-[DaishenNo285]=xlsread(file2,'待生吸附剂','D3:E3');
-[DaishenNo313]=xlsread(file2,'待生吸附剂','D4:E4');
-[ZaishenNo285]=xlsread(file2,'待生吸附剂','D3:E3');
-[ZaishenNo313]=xlsread(file2,'待生吸附剂','D4:E4');
-[productNo285]=xlsread(file2,'产品','D3:E3');
-[productNo313]=xlsread(file2,'产品','D4:E4');
+% [rawNo285]=xlsread(file2,'原料','D2:J2');
+% [rawNo313]=xlsread(file2,'原料','D3:J3');
+% [DaishenNo285]=xlsread(file2,'待生吸附剂','D3:E3');
+% [DaishenNo313]=xlsread(file2,'待生吸附剂','D4:E4');
+% [ZaishenNo285]=xlsread(file2,'再生吸附剂','D3:E3');
+% [ZaishenNo313]=xlsread(file2,'再生吸附剂','D4:E4');
+% [productNo285]=xlsread(file2,'产品','D3:E3');
+% [productNo313]=xlsread(file2,'产品','D4:E4');
+
+%将空值处使用前后两小时平均数据代替
+% [n,dim]=size(dataNo313);
+% for i=1:dim
+%     vec=dataNo313(:,i);
+%     len=length(vec);
+%     k=1;
+%     for j=1:n
+%         if vec(j)==0   %如果该处值为0
+%             len=len-1;
+%             num(k)=j;   %记录0位置点
+%             k=k+1;
+%         end
+%     end
+%     
+%     if len~= 0&&len~=length(vec)
+%         meanVec=sum(vec)/len;
+%         for j=1:k-1
+%             dataNo313(num(j),i)=meanVec;
+%         end
+%     end
+% end
+
+%354个操作变量的取值范围与delta误差
+% [~,range]=xlsread(file3,'D2:D355');
+% [~,range2]=xlsread(file3,'F2:F355');
+% for i=1:size(range)
+%     line=range(i);
+%     range(i)=regexp(line,'-','split');
+% end
+% [n,dim]=size(dataNo313);
+% for i=1:n %对40个行向量取值
+%     for j=1:dim
+%         if dataNo313(i,j)<range{1,j}(1) || dataNo313(i,j)>range{1,j}(2) %如果有不符合范围的
+%             dataNo313(i,j)=Inf; 
+%         end
+%     end
+% end
+
+%利用3σ准则准则剔除误差较大值
+[n,dim]=size(dataNo285);
+for i=1:dim
+    a=dataNo285(:,i);   %取出一列数据
+    plot(a);
+    aa=mean(a);
+    sig=std(a); %标准差
+    m=zeros(1,length(a));
+    k=1;
+    for t=1:length(a)
+        m(t)=abs(a(t)-aa);
+        if m(t)>=3*sig;
+            n(t)=aa;
+            num(k)=a(t);    %记录异常数据
+            k=k+1;
+        else
+            n(t)=a(t);
+        end
+    end
+    b=0:1:length(n)-1;
+    subplot(2,1,2);
+    plot(b,n);
+    
+end
