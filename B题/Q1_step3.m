@@ -6,12 +6,12 @@ function[data]=Q1_step3(data)
         flag=1;
         while(flag==1)  %循环
             flag=0;
-            No0_vec=nonzeros(vec);   %取出非零元素
-            aa=mean(No0_vec); %非零元素均值
-            sig=sqrt((1/(length(No0_vec)-1))*sum((No0_vec-aa).^2)); %标准差
+            NoNaN_vec=vec(~isnan(vec));   %取出非空元素
+            aa=mean(NoNaN_vec); %非空元素均值
+            sig=sqrt((1/(length(NoNaN_vec)-1))*sum((NoNaN_vec-aa).^2)); %标准差
             for t=1:length(vec) %遍历这列数据
-                if (vec(t)~=0) && (abs(vec(t)-aa)>=3*sig)
-                    vec(t)=0;  %超过的置0
+                if (~isnan(vec(t))) && (abs(vec(t)-aa)>3*sig)
+                    vec(t)=NaN;  %超过的置空
                     flag=1;
                 end
             end

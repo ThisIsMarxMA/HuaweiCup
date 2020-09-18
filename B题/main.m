@@ -7,7 +7,7 @@ file3='C:\2020ÄêÖĞ¹úÑĞ¾¿ÉúÊıÑ§½¨Ä£¾ºÈüÈüÌâ\2020ÄêBÌâ\2020ÄêBÌâ--ÆûÓÍĞÁÍéÖµ½¨Ä£\Ê
 % [Daishen_2]=xlsread(file,'M4:N328');
 % [Zaishen_2]=xlsread(file,'O4:P328');
 % [product_2]=xlsread(file,'J4:K328');
-% [RON_Loss]=xlsread(file,'L4:L328');
+[RON_Loss]=xlsread(file,'L4:L328');
 
 %No285£¬No313ºÅÑù±¾
 [dataNo285]=xlsread(file2,'²Ù×÷±äÁ¿','B4:MQ43');
@@ -25,22 +25,29 @@ file3='C:\2020ÄêÖĞ¹úÑĞ¾¿ÉúÊıÑ§½¨Ä£¾ºÈüÈüÌâ\2020ÄêBÌâ\2020ÄêBÌâ--ÆûÓÍĞÁÍéÖµ½¨Ä£\Ê
 [~,range]=xlsread(file3,'D2:D355');
 
 %Ö÷º¯Êı²¿·Ö
-dataNo313=Q1_step3(dataNo313);  %°´3sigma·¨Ôò£¬Òì³£ÖµÖÃÁã
-dataNo313=Q1_step1(dataNo313,0.7);  %°´40*0.7Ö´ĞĞµÚÒ»µã
-Vec_dataNo313=mean(dataNo313);  %¸½¼şÈıÆ½¾ùÖµ
-
-dataNo285=Q1_step3(dataNo285);  %°´3sigma·¨Ôò£¬Òì³£ÖµÖÃÁã
-dataNo285=Q1_step1(dataNo285,0.7);  %°´40*0.7Ö´ĞĞµÚÒ»µã
-Vec_dataNo285=mean(dataNo285);  %¸½¼şÈıÆ½¾ùÖµ
-
-data_354_2=data_354;    %Ô­Ê¼Êı¾İ
-data_354(313,:)=Vec_dataNo313;
-data_354(285,:)=Vec_dataNo285;
-data_354_3=data_354;    %¸½¼şÈı´¦ÀíºóÊı¾İ
+% dataNo313=Q1_step3(dataNo313);  %°´3sigma·¨Ôò£¬Òì³£ÖµÖÃNaN
+% dataNo313=Q1_step1(dataNo313,0.7);  %°´40*0.7Ö´ĞĞµÚÒ»µã
+% Vec_dataNo313=mean(dataNo313);  %¸½¼şÈıÆ½¾ùÖµ
+% 
+% dataNo285=Q1_step3(dataNo285);  %°´3sigma·¨Ôò£¬Òì³£ÖµÖÃNaN
+% dataNo285=Q1_step1(dataNo285,0.7);  %°´40*0.7Ö´ĞĞµÚÒ»µã
+% Vec_dataNo285=mean(dataNo285);  %¸½¼şÈıÆ½¾ùÖµ
+% 
+% data_354_2=data_354;    %Ô­Ê¼Êı¾İ
+% data_354(313,:)=Vec_dataNo313;
+% data_354(285,:)=Vec_dataNo285;
+% data_354_3=data_354;    %¸½¼şÈı´¦ÀíºóÊı¾İ
 
 %¶Ô¸½¼şÒ»´¦Àí
-data_354=Q1_step2(data_354,range);  %°´±äÁ¿·¶Î§ÖÃ0
-data_354=Q1_step1(data_354,1);      %ÁĞÖĞÓĞÒ»¸ö0ÔòÕûÁĞÖÃ0
+% [d,data_354]=Q1_step2(data_354,range);  %°´±äÁ¿·¶Î§ÖÃ¿Õ
+% data_354=Q1_step3(data_354);    %°´3sigma·¨Ôò£¬Òì³£ÖµÖÃ¿Õ 
+
+
+
+
+
+
+
 
 
 
