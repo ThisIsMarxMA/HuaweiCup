@@ -1,5 +1,5 @@
 % 得到354个操作变量的取值范围
-function[b]=Q1_step2(fanwei) 
+function[b]=Q4_step1(fanwei) 
     b=zeros(length(fanwei),2);
     for i=1:size(fanwei)
         aaa=fanwei(i);

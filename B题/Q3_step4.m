@@ -1,16 +1,16 @@
-% load carsmall % matlab×Ô´øÊı¾İ£¬¿ÉÒÔÖ±½ÓÔËĞĞ¡£Êı¾İ°üº¬±äÁ¿£ºHorsepower, Weight, MPG
-% X = [Horsepower Weight];
-% rtree = fitrtree(X,MPG); % Éú³É¾ö²ßÊ÷£º»Ø¹éÊ÷
-% view(rtree,'Mode','graph')  % ²é¿´¾ö²ßÊ÷
+load carsmall % matlab×Ô´øÊı¾İ£¬¿ÉÒÔÖ±½ÓÔËĞĞ¡£Êı¾İ°üº¬±äÁ¿£ºHorsepower, Weight, MPG
+X = [Horsepower Weight];
+rtree = fitrtree(X,MPG); % Éú³É¾ö²ßÊ÷£º»Ø¹éÊ÷
+view(rtree,'Mode','graph')  % ²é¿´¾ö²ßÊ÷
 
 % load fisheriris %matlab×Ô´øÊı¾İ£¬¿ÉÒÔÖ±½ÓÔËĞĞ¡£% loadÑù±¾Êı¾İ
 % ctree =  fitctree(meas,species); % Éú³É¾ö²ßÊ÷£º·ÖÀàÊ÷
 % view(ctree,'Mode','graph') % % ²é¿´¾ö²ßÊ÷
 
-load ionosphere % °üº¬±äÁ¿ X ºÍ Y
-ctree = fitctree(X,Y);
-resuberror = resubLoss(ctree)%ºâÁ¿·ÖÀàÎó²î£¬´Ë´¦¿ÉÒÔÉèÖÃËğÊ§º¯Êı
-Ynew = predict(ctree,mean(X))%±äÁ¿XµÄËùÓĞÁĞÇóÆ½¾ùÖµ£¬Éú³ÉĞÂµÄÑù±¾Êı¾İ£¬ÅĞ¶ÏÆä·ÖÀàC.¼ìÑé¾ö²ßÊ÷ĞÔÄÜ²¢ĞŞÕı
+% load ionosphere % °üº¬±äÁ¿ X ºÍ Y
+% ctree = fitctree(X,Y);
+% resuberror = resubLoss(ctree)%ºâÁ¿·ÖÀàÎó²î£¬´Ë´¦¿ÉÒÔÉèÖÃËğÊ§º¯Êı
+% Ynew = predict(ctree,mean(X))%±äÁ¿XµÄËùÓĞÁĞÇóÆ½¾ùÖµ£¬Éú³ÉĞÂµÄÑù±¾Êı¾İ£¬ÅĞ¶ÏÆä·ÖÀàC.¼ìÑé¾ö²ßÊ÷ĞÔÄÜ²¢ĞŞÕı
 
 % leafs = logspace(1,2,10);
 % rng('default')
@@ -29,12 +29,12 @@ Ynew = predict(ctree,mean(X))%±äÁ¿XµÄËùÓĞÁĞÇóÆ½¾ùÖµ£¬Éú³ÉĞÂµÄÑù±¾Êı¾İ£¬ÅĞ¶ÏÆä·ÖÀ
 % resuberror = resubLoss(OptimalTree) %ºâÁ¿·ÖÀàÎó²î£¬Ä¬ÈÏ¾ù·½²îËã·¨£¬´Ë´¦¿ÉÒÔÉèÖÃËğÊ§º¯Êı
 % lossOpt = kfoldLoss(crossval(OptimalTree))  %½»²æÑéÖ¤Îó²î
 
-[~,~,~,bestlevel] = cvLoss(ctree,'SubTrees','All','TreeSize','min')
-cptree = prune(ctree,'Level',bestlevel);
-view(cptree,'Mode','graph') % ²é¿´¾ö²ßÊ÷
-%¼ÆËã¼ôÖ¦ºó¾ö²ßÊ÷µÄÖØ²ÉÑùÎó²îºÍ½»²æÑéÖ¤Îó²î
-resubPrune =  resubLoss(cptree)
-lossPrune =  kfoldLoss(crossval(cptree))
+% [~,~,~,bestlevel] = cvLoss(ctree,'SubTrees','All','TreeSize','min')
+% cptree = prune(ctree,'Level',bestlevel);
+% view(cptree,'Mode','graph') % ²é¿´¾ö²ßÊ÷
+% %¼ÆËã¼ôÖ¦ºó¾ö²ßÊ÷µÄÖØ²ÉÑùÎó²îºÍ½»²æÑéÖ¤Îó²î
+% resubPrune =  resubLoss(cptree)
+% lossPrune =  kfoldLoss(crossval(cptree))
 
 
 

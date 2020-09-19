@@ -23,7 +23,7 @@ file3='附件四：354个操作变量信息.xlsx';
 % [productNo313]=xlsread(file2,'产品','D4:E4');
 
 %读取附件三 354个操作变量取值范围
-[~,fanwei]=xlsread(file3,'D2:D355');
+[~,range]=xlsread(file3,'D2:D355');
 
 %第一问 对No285，No313号样本以及325个样本进行预处理
 dataNo313=Q1_step4(data_354,dataNo313); %根据经验总结出操作变量的范围，并剔除一部分样本数据
@@ -46,19 +46,24 @@ S=[1,2,4,7,9];  %确定人工选取的变量
 % [data_new]=Q2_step2(data_nor,T);     %进行PCA主成分分析得到新的变量的数据 备选
 NUM=30;  %需要提取的操作变量个数
 [idx,MI]=mutInfFS(data_nor,RON_Loss,NUM);  %idx为得到的特征排序，MI为其对应的信息值
-data_new=[data_vip,data_nor(:,idx)];       %得到新的变量的数据 要求size(data_new,2)<30
+data_new=[data_vip,data_nor(:,idx)];       %得到新的变量的数据要求size(data_new,2)<30
 data_new_raw=data_new;  %保存原始数据
 
-%第三问 通过多元线性回归与决策回归树建立预测模型
+%第三问 
 NUM=280;  %样本划分的训练集个数
 [X_train,Y_train,X_test,Y_test] = Q3_step2(data_new,RON_Loss,NUM);  %将数据集划分为训练集与测试集
-[b,Y_result]=Q3_step1(X_train,Y_train,X_test);  %使用训练集进行多元线性回归，给出回归系数b与预测结果
+%使用前30个特征进行多元线性回归
+[b,Y_result]=Q3_step1(X_train,Y_train,X_test);
+
+%线性规划
+range=Q1_step2(fanwei); %354个操作变量取值范围
+range=[range;0,5];  %加上对硫含量的限制
+
+[x,fval,exitflag,output,lambda]=linprog(b(2:end),[],[],[],[],range(:,1),range(:,2));
+minRON_Loss=sum(b .* [1,x]');
 
 %第四问
-range=Q4_step1(fanwei); %354个操作变量取值范围
-range=[range;0,5];  %加上对硫含量的限制
-[x,fval,exitflag,output,lambda]=linprog(b(2:end),[],[],[],[],range(:,1),range(:,2));%线性规划
-minRON_Loss=sum(b .* [1,x]');
+
 
 
 

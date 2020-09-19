@@ -1,5 +1,5 @@
 %有空值则一列删除
-function[data_new]=Q2_step3(data)
+function[data_new]=Q1_step5(data)
     [n,dim]=size(data);
     k=1;
     for i=1:dim

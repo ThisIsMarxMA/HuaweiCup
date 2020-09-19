@@ -17,7 +17,7 @@ function[b,Y_result]=Q3_step1(data_train,Y_train,data_test)
     %»­²Ð²îÍ¼
     rcoplot(r,rint);
     %Ô¤²â¼°×÷Í¼
-    for i=1:25
+    for i=1:size(data_test,1)
         Y_result(i,1)=sum(b .* [1,data_test(i,:)]');
     end
 

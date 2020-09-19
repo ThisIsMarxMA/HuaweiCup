@@ -1,9 +1,9 @@
 %将数据集划分为训练集与测试集
-function[X_train,Y_train,X_test,Y_test]=Q3_step2(X,Y,T)  %T=0.8
+function[X_train,Y_train,X_test,Y_test]=Q3_step2(X,Y,T)  %T=280
 %     X=[1,2;3,4;5,6;7,8];Y=[60;70;80;90];T=0.8;
     %训练数据
     len = size(X,1);
-    randidx = randsample(len,floor(len*T),false) ;    %随机取样，可重复
+    randidx = randsample(len,T,false) ;    %随机取样，不可重复
     X_train = X(randidx,:);
     Y_train = Y(randidx,:);
     %测试数据
