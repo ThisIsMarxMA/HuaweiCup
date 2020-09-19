@@ -1,5 +1,5 @@
-% 354个操作变量的取值范围并将范围外的置零
-function[b,data]=Q1_step2(data,fanwei) 
+% 得到354个操作变量的取值范围
+function[b]=Q1_step2(fanwei) 
     b=zeros(length(fanwei),2);
     for i=1:size(fanwei)
         aaa=fanwei(i);
@@ -18,15 +18,6 @@ function[b,data]=Q1_step2(data,fanwei)
         elseif L1-L2==3
             b(i,1)=-str2double(temp2(2));
             b(i,2)=-str2double(temp2(4));
-        end
-    end
-    
-    [n,dim]=size(data);
-    for i=1:n %对40个行向量取值
-        for j=1:dim
-            if data(i,j)<b(j,1) || data(i,j)>b(j,2) %如果有不符合范围的（按闭区间）
-                data(i,j)=NaN;    %超出范围则置空
-            end
         end
     end
 end
