@@ -25,6 +25,9 @@ for r in range(start_row, end_row):
 print('原始变量数:')
 print(len(data_list[0]))
 
+''' 归一化处理 '''
+
+
 ''' 移除低方差变量 '''
 sel = VarianceThreshold(threshold=(.8 * (1 - .8)))
 remove_lovariance_list = sel.fit_transform(data_list)

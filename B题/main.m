@@ -74,16 +74,43 @@ mae = ae / test_runtimes ;
 mrr = rr / test_runtimes ;
 
 % 第四问
-% range_354=Q4_step1(fanwei); %354个操作变量取值范围
-% range_Sul=[0,5];  %加上对硫含量的限制    硫含量需要搭建模型，由于时间不足，此处放弃
-% RON_Loss_ev=mean(RON_Loss);
+range_354=Q4_step1(fanwei); %354个操作变量取值范围
+range_Sul=[0,5];  %加上对硫含量的限制    硫含量需要搭建模型，由于时间不足，此处放弃
+RON_Loss_ev=mean(RON_Loss);
+Edge_low=range_354(idx,1);
+Edge_high=range_354(idx,2);
 
 % Edge_low=[(0.2 .* mean([raw_7 Daishen_2 Zaishen_2])');range_354(idx,1)];  %变量取值范围低端
 % Edge_high=[(1.8 .* mean([raw_7 Daishen_2 Zaishen_2])');range_354(idx,2)];   %变量取值范围高端
 % [x_val,fval,exitflag,output,lambda]=linprog(b(2:end),[],[],[],[],Edge_low,Edge_high);    %线性规划
 % minRON_Loss=sum(b .* [1;x_val]);
 
-
+% 9个产品变量
+x = [248, 89.7, 20.6, 23.5, 50.11, 727.8, 88.3, 1.53, 7.25];
+% 21个操作变量，对应下面点15 - 76，21个变量
+y = [0.3111, 2.4768, 418.7897, 2.363, 10.7732, 237.651, 2.3748, 0, 4.7623, 0.6600, 126.0056, 54.9900, 789.3278, 0.9926, 426.7278, 49.8122, 8943.7576, 187.1445, 366.3277, -0.1526, 1.9900];
+% 21个操作变量按范围和步长取值
+var_15 = linspace(0.2, 0.37, (0.37-0.2) / 0.01);
+var_17 = linspace(2.35, 2.7, (2.7-2.35) / 0.1);
+var_20 = linspace(399, 430, (430-399) / 1);
+var_21 = linspace(2.25, 2.55, (2.55-2.25) / 0.1);
+var_23 = linspace(8, 1500, (1500-8) / 100);
+var_24 = linspace(165, 250, (250-165) / 2);
+var_26 = linspace(2.25, 2.55, (2.55-2.25) / 0.1);
+var_27 = linspace(0, 350, (350-0) / 50);
+var_28 = linspace(4.5, 5.85, (5.85-4.5) / 0.1);
+var_29 = linspace(0.6, 0.7, (0.7-0.6) / 0.05);
+var_30 = linspace(100, 150, (150-100) / 1);
+var_31 = linspace(45, 60, (60-45) / 1);
+var_41 = linspace(430, 1500, (1500-430) / 50);
+var_47 = linspace(0.95, 1, (1-0.95) / 0.05);
+var_53 = linspace(0, 900, (900-0) / 50);
+var_61 = linspace(0, 75, (75-0) / 5);
+var_67 = linspace(5500, 9000, (9000-5500) / 0.01);
+var_68 = linspace(1.5, 650, (650-1.5) / 10);
+var_73 = linspace(-0.2, 0, (0-0.2) / -0.05);
+var_75 = linspace(400, 500, (500-400) / 1);
+var_76 = linspace(400, 450, (450-400) / 1);
 
 
 
