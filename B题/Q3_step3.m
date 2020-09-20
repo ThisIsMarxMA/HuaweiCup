@@ -1,8 +1,11 @@
-% [rawNo285]=xlsread(file2,'原料','D2:J2');
-% [rawNo313]=xlsread(file2,'原料','D3:J3');
-% [DaishenNo285]=xlsread(file2,'待生吸附剂','D3:E3');
-% [DaishenNo313]=xlsread(file2,'待生吸附剂','D4:E4');
-% [ZaishenNo285]=xlsread(file2,'再生吸附剂','D3:E3');
-% [ZaishenNo313]=xlsread(file2,'再生吸附剂','D4:E4');
-% [productNo285]=xlsread(file2,'产品','D3:E3');
-% [productNo313]=xlsread(file2,'产品','D4:E4');
+%将数据集划分为训练集与测试集
+function[X_train,Y_train,X_test,Y_test]=Q3_step3(X,Y,T)  %T=280
+%     X=[1,2;3,4;5,6;7,8];Y=[60;70;80;90];T=0.8;
+    %训练数据
+    len = size(X,1);
+    X_train = X(1:T,:);
+    Y_train = Y(1:T,:);
+    %测试数据
+    X_test = X(T+1:len,:);
+    Y_test = Y(T+1:len,:);
+end

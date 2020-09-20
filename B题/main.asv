@@ -74,14 +74,13 @@ mae = ae / test_runtimes ;
 mrr = rr / test_runtimes ;
 
 % 第四问
-% range_354=Q4_step1(fanwei); %354个操作变量取值范围
-% range_Sul=[0,5];  %加上对硫含量的限制    硫含量需要搭建模型，由于时间不足，此处放弃
-% RON_Loss_ev=mean(RON_Loss);
-
-% Edge_low=[(0.2 .* mean([raw_7 Daishen_2 Zaishen_2])');range_354(idx,1)];  %变量取值范围低端
-% Edge_high=[(1.8 .* mean([raw_7 Daishen_2 Zaishen_2])');range_354(idx,2)];   %变量取值范围高端
-% [x_val,fval,exitflag,output,lambda]=linprog(b(2:end),[],[],[],[],Edge_low,Edge_high);    %线性规划
-% minRON_Loss=sum(b .* [1;x_val]);
+range_354=Q4_step1(fanwei); %354个操作变量取值范围
+range_Sul=[0,5];  %加上对硫含量的限制    硫含量需要搭建模型，由于时间不足，此处放弃
+RON_Loss_ev=mean(RON_Loss);
+Edge_low=[(0.2 .* mean([raw_7 Daishen_2 Zaishen_2])');range_354(idx,1)];  %变量取值范围低端
+Edge_high=[(1.8 .* mean([raw_7 Daishen_2 Zaishen_2])');range_354(idx,2)];   %变量取值范围高端
+[x_val,fval,exitflag,output,lambda]=linprog(b(2:end),[],[],[],[],Edge_low,Edge_high);    %线性规划
+minRON_Loss=sum(b .* [1;x_val]);
 
 
 
